@@ -9,11 +9,11 @@
 
 | Outil    | Version  |
 |----------|----------|
-| Docker   | 29.0.1   |
+| Docker   | 28.5.2   |
 | kubectl  | v1.34.1  |
 | Minikube | v1.39.0  |
 
-Environnement : Windows 11 Pro, pilote Minikube `docker`.
+Environnement : pilote Minikube `docker`.
 
 ## Contenu du rendu
 
@@ -57,4 +57,6 @@ Toutes les commandes sont lancées depuis `rendu-kubernetes/`.
 
 - Le premier `minikube start` est long, car Minikube télécharge son image de base et les images de Kubernetes.
 - Sous PowerShell, `curl` est un alias de `Invoke-WebRequest` : on utilise `curl.exe http://localhost:8080` pour obtenir la sortie brute.
+- L'installation de Minikube avec `winget` a annoncé un succès sans rien installer : on a téléchargé directement `minikube-windows-amd64.exe` et ajouté son dossier au `PATH`. Il a fallu rouvrir le terminal pour que la commande `minikube` soit reconnue.
+- L'image `traefik/whoami` est minimale (sans shell ni `hostname`) : `kubectl exec -it whoami-pod -- sh` et `hostname` échouent. Le nom du Pod s'obtient avec `kubectl get pods` ou dans la sortie de `curl` (champ `Hostname`).
 - `kubectl port-forward` bloque le terminal : il faut un second terminal pour lancer `curl`.
